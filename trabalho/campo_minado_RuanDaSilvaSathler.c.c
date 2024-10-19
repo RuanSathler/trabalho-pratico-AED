@@ -32,8 +32,23 @@ int **CriaMatDinamica(int tamanho){
     return mat;
 }
 
-void AlocaBombas(int *vet, int qntBomb, int tamanho){
+
+//aqui o verto um vetor carregando a localizacao das bombas é convertido para a matriz original e onde não houver bomba é colocado um zero
+void converteVetParaMat(int **mat, int vet[], int tamanho){
+    int contL, contC;
+
+    for(contL=0; contL<tamanho; contL++){
+        for(contC=0; contC<tamanho; contC++){
+            if(vet[contL * tamanho +contC]==-1) mat[contL][contC] = vet[contL * tamanho +contC];
+            else mat[contL][contC] = 0;
+        }
+    }
+}
+
+//cria um vetor com o mesmmo tamanho da matriz e coloca as bombas dentro dele
+void AlocaBombasEZeros(int qntBomb, int tamanho, int **mat){
     int cont, locBomb;
+    int *vet = CriaVetDinamico(tamanho);
 
     srand(time(0));
 
@@ -48,17 +63,8 @@ void AlocaBombas(int *vet, int qntBomb, int tamanho){
             cont++;
         }
     }
-}
-
-void converteVetParaMat(int **mat, int vet[], int tamanho){
-    int contL, contC;
-
-    for(contL=0; contL<tamanho; contL++){
-        for(contC=0; contC<tamanho; contC++){
-            if(vet[contL * tamanho +contC]==-1) mat[contL][contC] = vet[contL * tamanho +contC];
-            else mat[contL][contC] = 0;
-        }
-    }
+    converteVetParaMat(mat, vet, tamanho);
+    free(vet);
 }
 
 //funcao auxiliar para inicalizar os 8 quadrados em volta da bomba(nao funciona em quadrados que estejam na borda)
@@ -77,7 +83,6 @@ void mapearAreaProximaBomba(int **mat, int locLinha, int locColuna){
 
 void InializaMatBack(int tamanho, int **mat, int *espacosLivresRestantes){
     int qntBomb, contC, contL, indicemax;
-    int *vet = CriaVetDinamico(tamanho);
 
     indicemax = tamanho - 1;
 
@@ -88,8 +93,7 @@ void InializaMatBack(int tamanho, int **mat, int *espacosLivresRestantes){
     *espacosLivresRestantes = (tamanho * tamanho) - qntBomb;
 
     //coloca tamanho -1 para que ele seja igual ao indice max
-    AlocaBombas(vet, qntBomb, tamanho);
-    converteVetParaMat(mat, vet, tamanho);
+    AlocaBombasEZeros(qntBomb, tamanho, mat);
 
     //comeca verificanto se tem bomba em algum dos cantos
     //borda superior esquerda
@@ -175,9 +179,9 @@ void InializaMatBack(int tamanho, int **mat, int *espacosLivresRestantes){
             if(mat[contL][contC]==-1) mapearAreaProximaBomba(mat, contL, contC);
         }
     }
-    free(vet);
 }
 
+//inicializa matriz que será mostrada para o o usuário, iniciada com -1, o que indica que nehum dos seus numeros foi clicado
 void InializaMatFront(int tamanho, int **mat){
     int contL, contC;
 
@@ -187,6 +191,9 @@ void InializaMatFront(int tamanho, int **mat){
         }
     }
 }
+
+/*imprime a matriz do usuario e se algum dos suas cas tiver sido clicada, ou seja se seu valor for -1 imprime 
+a casa corespondente na matriz que carrega as bombas*/
 
 void ImprimeMatFront(int tamanho, int **mat){
     int contL, contC;
@@ -208,6 +215,7 @@ void ImprimeMatFront(int tamanho, int **mat){
     }
 }
 
+// imprime a matriz que carrega as bombas, é usada caro queria ver algum possivel erro ou se o usuario tiver perdido o jogo
 void ImprimeMatBack(int tamanho, int **mat){
     int contL, contC;
 
@@ -250,7 +258,7 @@ int main(){
     printf("2 - medio \n");
     printf("3 - dificil\n");
 
-    while(tamanho = LerInt(), tamanho<1 || tamanho>3){
+    while(tamanho = LerInt(), tamanho!=1 && tamanho!=2 && tamanho!=3){
         printf("entrada incorreta, por favor insira um level valido\n");
     }
 
@@ -266,7 +274,7 @@ int main(){
         ImprimeMatFront(tamanho, matFront);
         printf("digite as coordenadas no padrao: Linha, Coluna\n");
 
-        while(coorL=LerInt(), coorC=LerInt(), coorL>tamanho || coorC>tamanho){
+        while(coorL=LerInt(), coorC=LerInt(), coorL>tamanho || coorC>tamanho || coorL<1|| coorC<1){
             printf("coordena incorreta, tente novamente\n");
         }
 
