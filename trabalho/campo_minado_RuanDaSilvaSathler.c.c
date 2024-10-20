@@ -287,7 +287,7 @@ int main(){
         coorC -= 1;
 
         if(matBack[coorL][coorC]==-1){
-            printf("voce perdeu\n");
+            printf("game over\n");
             ImprimeMatBack(tamanho, matBack);
             break;
         }
