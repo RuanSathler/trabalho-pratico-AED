@@ -2,13 +2,17 @@
 #include <stdlib.h>
 #include <time.h>
 
-int LerInt(){
-    int num;
-
-    scanf("%d,", &num);
-
-    return num;
+//ler as coordenadas e garante que sejam entradas validas, são consideradas entradas validas dois numeros na mesmda linhas,
+//sejam separados por ponto, virgula ou espaço
+void LerCoordenadas(int *linha, int *coluna) {
+    while (scanf("%d%*[ ,.]%d", linha, coluna) != 2) {
+        // Entrada inválida, solicitar novamente
+        printf("Entrada invalida! Tente novamente no formato: Linha, Coluna (exemplo: 4,2)\n");
+        // Limpar o buffer de entrada
+        while (getchar() != '\n');
+    }
 }
+
 
 int *CriaVetDinamico(int tamanho){
     int *vet = (int*)malloc((tamanho * tamanho)* sizeof(int));
@@ -258,7 +262,8 @@ int main(){
     printf("2 - medio \n");
     printf("3 - dificil\n");
 
-    while(tamanho = LerInt(), tamanho!=1 && tamanho!=2 && tamanho!=3){
+    while((scanf("%d", &tamanho)!=1) || tamanho<1 || tamanho>3){
+        while(getchar() != '\n');
         printf("entrada incorreta, por favor insira um level valido\n");
     }
 
@@ -274,8 +279,8 @@ int main(){
         ImprimeMatFront(tamanho, matFront);
         printf("digite as coordenadas no padrao: Linha, Coluna\n");
 
-        while(coorL=LerInt(), coorC=LerInt(), coorL>tamanho || coorC>tamanho || coorL<1|| coorC<1){
-            printf("coordena incorreta, tente novamente\n");
+        while(LerCoordenadas(&coorL, &coorC), coorL>tamanho || coorC>tamanho || coorL<1|| coorC<1){
+            printf("coordena maior que o tamanho do mapa, tente novamente\n");
         }
 
         coorL -= 1;
@@ -293,9 +298,15 @@ int main(){
         else matFront[coorL][coorC] = matBack[coorL][coorC];
 
         espacosLivresRestantes--;
+        
+        //descomentar a linha abaixo caso queria que o terminal seja limpo depois de cada rodada
+        system("cls");
     }while(espacosLivresRestantes>0);
 
-    if(espacosLivresRestantes==0) printf("parabens, voce he fera\n");
+    if(espacosLivresRestantes==0){
+        ImprimeMatBack(tamanho, matBack);
+        printf("parabens, voce he fera\n");
+    }
 
 
     LiberaMatDinamica(tamanho, matBack);
