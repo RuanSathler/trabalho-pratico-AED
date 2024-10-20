@@ -300,7 +300,10 @@ int main(){
         espacosLivresRestantes--;
         
         //descomentar a linha abaixo caso queria que o terminal seja limpo depois de cada rodada
-        system("cls");
+        //Windows
+        //system("cls");
+        //linux
+        //system("clear");
     }while(espacosLivresRestantes>0);
 
     if(espacosLivresRestantes==0){
