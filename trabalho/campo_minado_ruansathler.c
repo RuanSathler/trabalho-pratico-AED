@@ -34,12 +34,6 @@ int main(){
         SalvaJogada(coorL, coorC, espacosLivresRestantes,  mapa, tamanho, registro);
         printf("digite as coordenadas no padrao: Linha, Coluna\n");
 
-        if(LerCoordenadas(&coorL, &coorC) == -1){
-            printf("parece que seu arquivo de entradas acabou, ate a proxima");
-            fprintf(registro, "parece que seu arquivo de entradas acabou, ate a proxima");
-            exit(1);
-        }
-
         while(qntEntrada = LerCoordenadas(&coorL, &coorC), coorL>tamanho || coorC>tamanho || coorL<1|| coorC<1){
             if(qntEntrada== -1){
             printf("parece que seu arquivo de entradas acabou, até a procima");

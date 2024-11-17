@@ -1,0 +1,27 @@
+coordenadas escolhidas: 0,0
+Espacos Restantes: 85
+     01 02 03 04 05 06 07 08 09 10 
+01 - X  X  X  X  X  X  X  X  X  X  
+02 - X  X  X  X  X  X  X  X  X  X  
+03 - X  X  X  X  X  X  X  X  X  X  
+04 - X  X  X  X  X  X  X  X  X  X  
+05 - X  X  X  X  X  X  X  X  X  X  
+06 - X  X  X  X  X  X  X  X  X  X  
+07 - X  X  X  X  X  X  X  X  X  X  
+08 - X  X  X  X  X  X  X  X  X  X  
+09 - X  X  X  X  X  X  X  X  X  X  
+10 - X  X  X  X  X  X  X  X  X  X  
+
+voce perdeu, havia uma bomba na celula que vc escolheu: 1,1
+Espacos Restantes: 85
+     01 02 03 04 05 06 07 08 09 10 
+01 --1  1  1  1  1  1 -1  1  1  1  
+02 - 1  1  1 -1  1  1  1  1  1 -1  
+03 - 0  0  1  2  2  1  0  0  1  1  
+04 - 1  1  1  1 -1  1  0  0  1  1  
+05 - 1 -1  2  2  2  3  2  1  1 -1  
+06 - 2  3 -1  1  1 -1 -1  1  1  1  
+07 --1  2  1  1  1  2  3  2  1  0  
+08 - 2  3  1  2  1  1  1 -1  1  0  
+09 --1  2 -1  2 -1  1  1  1  1  0  
+10 - 1  2  1  2  1  1  0  0  0  0  
