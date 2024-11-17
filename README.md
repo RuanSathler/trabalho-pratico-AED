@@ -1,106 +1,81 @@
-# Campo Minado
+# Campo Minado - Versão 2.0
+<p>Esta é uma versão aprimorada da primeira versão. Neste trabalho, implementei a versão 2.0 do jogo, com o objetivo de introduzir novas funcionalidades, incluindo a capacidade de salvar e carregar partidas. Além disso, a estrutura do código foi reorganizada para melhorar a legibilidade e manutenibilidade.</p>
 
-* Trabalho prático solicitado pelo professor Juan na matéria de AED-I local : ICOMP - UFAM;
+<p><strong>Funcionalidades</strong></p>
 
-* Professor: Juan Colonna
+<p><strong>1. Novo Sistema de Salvamento de Partidas</strong></p>
+<p>Na versão 2.0, agora suas partidas são sslvas em uma pasta e você pode vê-las qualquer momento. As mudanças incluem:</p>
+<ul>
+  <li><strong>Salvar Jogo:</strong> Durante toda a partida automatimante as suas jogadas e o mapa é armazenada em um arquivo txt, e pode ser acessado depois pelo jogador.</li>
+</ul>
 
+#
+<p><strong>2. Separação das Funções em Arquivos</strong></p>
+<p>A estrutura do código foi reorganizada para melhorar a modularidade e a manutenção. Agora, temos diferentes arquivos para organizar as funcionalidades do jogo.</p>
+<ul>
+  <li><strong>campo_minadoV2.c:</strong> Arquivo principal do jogo, onde ocorre a lógica do jogo, incluindo a interação com o usuário e a execução das funções.</li>
+  <li><strong>campoMinado.c:</strong> Contém as funções auxiliares que gerenciam a criação da matriz do campo minado, a alocação de bombas, e a manipulação de células.</li>
+  <li><strong>registro.c:</strong> Arquivo responsável pelas funções de salvar e carregar o progresso do jogo.</li>
+  <li><strong>registro.c:</strong> Cabeçalho com as declarações das funções e definições necessárias para salvar o jogo.</li>
+  <li><strong>campoMinado.h:</strong> Cabeçalho com as declarações das funções e definições necessárias para a jogabilidade.</li>
+</ul>
 
-este trabalho tempo objetivo fazer uma emulação do jogo campo Minado usando alocação dinâmica de memória, além de exercitar boas práticas relacionadas a manipulação de memória.
+#
+<p><strong>3. Interação com o Usuário</strong></p>
+<p>O jogo agora inclui interações mais flexíveis para o jogador, como a adição de cores para melho visualização do mapa, além da adiçao do algoritimo flood fill</p>
+<ul>
+  <li><strong>Escolha de Dificuldade:</strong> O jogador pode escolher entre três níveis de dificuldade:
+    <ul>
+      <li><strong>Fácil:</strong> 10x10 com 15 bombas.</li>
+      <li><strong>Médio:</strong> 20x20 com 60 bombas.</li>
+      <li><strong>Difícil:</strong> 30x30 com 135 bombas.</li>
+    </ul>
+  </li>
+</ul>
 
-## Descrição Geral
-Este programa é um jogo de lógica inspirado no "Campo Minado". O jogador escolhe um nível de dificuldade e clica em células de uma grade, tentando evitar as bombas. O jogo tem uma interface simples no terminal e usa alocação dinâmica de memória para gerenciar a grade do jogo.
+#
+<p><strong>4. Estrutura de Funções</strong></p>
+<p>As funções foram divididas e melhoradas para otimizar o código. Algumas funções importantes incluem:</p>
+<ul>
+  <li><strong>LerCoordenadas:</strong> Função para ler as coordenadas inseridas pelo jogador e validar se são válidas.</li>
+  <li><strong>CriaMatDinamica:</strong> Cria a matriz do campo minado dinamicamente com base no tamanho do campo escolhido.</li>
+  <li><strong>AlocaBombasEZeros:</strong> Distribui as bombas de forma aleatória na matriz.</li>
+  <li><strong>InializaMatFront:</strong> Inicializa a matriz visível ao jogador, que é preenchida com -1 para indicar células não clicadas.</li>
+  <li><strong>ImprimeMatFront:</strong> Exibe a matriz do jogo visível para o jogador.</li>
+  <li><strong>ImprimeJogada e ImprimeFimPartida:</strong> Funções responsáveis pela gravação do progresso do jogo em arquivos e o resultado do jogo.</li>
+</ul>
 
-## Estruturas do Programa
+#
+<p><strong>5. Melhorias de Usabilidade</strong></p>
+<ul>
+  <li><strong>Validação de Entradas:</strong> Melhor tratamento de entradas do usuário, garantindo que apenas valores válidos sejam aceitos.</li>
+  <li><strong>Interface de Jogo no Terminal:</strong> O jogo foi feito para rodar no terminal, usando apenas texto para exibir o campo minado e a interface, mas agora o programa imprime o campo em diferentes cores para melhoras a visibilidade do mapa.</li>
+</ul>
 
-### Funções
+<p><strong>Arquivos do Projeto</strong></p>
+<ul>
+  <li><strong>campoMinadoV2.c:</strong> Contém o código principal do jogo, incluindo a interação com o usuário.</li>
+  <li><strong>campoMinadoFuncoes.c:</strong> Funções auxiliares para manipulação da matriz do campo minado.</li>
+  <li><strong>salvamento.c:</strong> Funções para salvar e carregar o estado do jogo.</li>
+  <li><strong>campoMinado.h:</strong> Arquivo de cabeçalho que define as funções e estruturas do jogo.</li>
+</ul>
 
-- `void LerCoordenadas(int *linha, int *coluna)`
-  - **Descrição:** Lê as coordenadas digitadas pelo jogador, garantindo que sejam números válidos.
-  - **Parâmetros:**
-    - `int *linha`: Ponteiro para guardar a linha digitada.
-    - `int *coluna`: Ponteiro para guardar a coluna digitada.
-  - **Validação:** Aceita entradas separadas por espaço, vírgula ou ponto. Se a entrada não for válida, pede para tentar novamente.
+<p><strong>Explicação das Mudanças</strong></p>
+<ul>
+  <li><strong>Alocação Dinâmica de Memória:</strong> O jogo agora utiliza alocação dinâmica para criar a matriz que representa o campo minado. Isso permite que o tamanho do campo seja ajustado com base na escolha do nível de dificuldade.</li>
+  <li><strong>Salvar e Carregar Partidas:</strong> Utilizamos arquivos para salvar o progresso do jogo. Quando o jogador opta por salvar, o estado do campo minado, incluindo as bombas e o progresso do jogador, é salvo em um arquivo binário. O jogo pode ser retomado carregando esse arquivo.</li>
+  <li><strong>Estrutura Modular:</strong> O código foi dividido em múltiplos arquivos, com funções específicas para cada parte do jogo, como criação da matriz, alocação de bombas, impressão do campo e manipulação do salvamento. Isso melhora a organização e a manutenção do código.</li>
+  
+  <li><strong>Melhorias na Interface:</strong> A interação com o usuário foi aprimorada, com validações para entradas incorretas e uma interface mais amigável, no terminal, para escolher as coordenadas e salvar o progresso.</li>
+</ul>
 
-- `int *CriaVetDinamico(int tamanho)`
-  - **Descrição:** Cria um vetor de inteiros com tamanho `tamanho * tamanho`.
-  - **Parâmetros:**
-    - `int tamanho`: Tamanho do vetor que será criado.
-  - **Retorno:** Retorna um ponteiro para o vetor criado ou encerra o programa com uma mensagem de erro se não conseguir alocar.
+#
+<p><strong>Contribuições</strong></p>
+<ul>
+  <li><strong>Professor:</strong> Juan Colonna, por guiar o desenvolvimento do projeto e fornecer as diretrizes iniciais.</li>
+  <li><strong>Aluno:</strong>Ruan Sathler, por implementar as mudanças e melhorias, incluindo a funcionalidade de salvamento de partidas.</li>
+</ul>
 
-- `int **CriaMatDinamica(int tamanho)`
-  - **Descrição:** Cria uma matriz de inteiros com dimensões `tamanho x tamanho`.
-  - **Parâmetros:**
-    - `int tamanho`: Tamanho da matriz que será criada.
-  - **Retorno:** Retorna um ponteiro para a matriz criada ou encerra o programa com uma mensagem de erro se não conseguir alocar.
-
-- `void converteVetParaMat(int **mat, int vet[], int tamanho)`
-  - **Descrição:** Converte um vetor que contém as posições das bombas em uma matriz, colocando zeros nas células sem bomba.
-  - **Parâmetros:**
-    - `int **mat`: Matriz onde as bombas e os zeros serão armazenados.
-    - `int vet[]`: Vetor que contém a posição das bombas.
-    - `int tamanho`: Tamanho da matriz.
-
-- `void AlocaBombasEZeros(int qntBomb, int tamanho, int **mat)`
-  - **Descrição:** Coloca as bombas e zera as células da matriz, distribuindo as bombas de forma aleatória.
-  - **Parâmetros:**
-    - `int qntBomb`: Número de bombas a serem colocadas.
-    - `int tamanho`: Tamanho da matriz.
-    - `int **mat`: Matriz onde as bombas serão colocadas.
-
-- `void mapearAreaProximaBomba(int **mat, int locLinha, int locColuna)`
-  - **Descrição:** Marca as células ao redor de uma bomba, contando quantas bombas estão próximas.
-  - **Parâmetros:**
-    - `int **mat`: Matriz onde as bombas e os contadores serão armazenados.
-    - `int locLinha`: Linha onde a bomba está.
-    - `int locColuna`: Coluna onde a bomba está.
-
-- `void InializaMatBack(int tamanho, int **mat, int *espacosLivresRestantes)`
-  - **Descrição:** Prepara a matriz que guarda as bombas e conta quantos espaços livres ainda existem.
-  - **Parâmetros:**
-    - `int tamanho`: Tamanho da matriz.
-    - `int **mat`: Matriz onde as bombas serão armazenadas.
-    - `int *espacosLivresRestantes`: Ponteiro para guardar o número de espaços livres.
-
-- `void InializaMatFront(int tamanho, int **mat)`
-  - **Descrição:** Prepara a matriz que será mostrada para o jogador, preenchendo com -1 (representa que nenhuma célula foi clicada).
-  - **Parâmetros:**
-    - `int tamanho`: Tamanho da matriz.
-    - `int **mat`: Matriz que será mostrada ao jogador.
-
-- `void ImprimeMatFront(int tamanho, int **mat)`
-  - **Descrição:** Mostra a matriz que está visível para o jogador.
-  - **Parâmetros:**
-    - `int tamanho`: Tamanho da matriz.
-    - `int **mat`: Matriz que será mostrada.
-
-- `void ImprimeMatBack(int tamanho, int **mat)`
-  - **Descrição:** Mostra a matriz que contém a localização das bombas, usada quando o jogador perde, ou quando o jogo termina.
-  - **Parâmetros:**
-    - `int tamanho`: Tamanho da matriz.
-    - `int **mat`: Matriz que contém as bombas.
-
-- `void LiberaMatDinamica(int tamanho, int **mat)`
-  - **Descrição:** Libera a memória usada pela matriz.
-  - **Parâmetros:**
-    - `int tamanho`: Tamanho da matriz.
-    - `int **mat`: Matriz que será liberada.
-
-### Função Principal
-
-- `int main()`
-  - **Descrição:** A função principal que controla como o jogo funciona.
-  - **Processo:**
-    - Pede ao usuário que escolha um nível de dificuldade.
-    - Lê as coordenadas e valida as entradas do jogador.
-    - Atualiza a matriz mostrada ao jogador e verifica se ele ganhou ou perdeu.
-    - Limpa a tela após cada jogada (opcional).
-    - Mostra a matriz final se o jogador perdeu ou venceu.
-    - Libera a memória que foi usada.
-
-## Considerações Finais
-O código foi feito para ser fácil de ler e manter. As funções são separadas, o que ajuda a entender e a reutilizar em outros projetos.
-
-As validações estão lá para garantir que a entrada do usuário seja sempre correta, evitando erros e problemas inesperados.
-
-A alocação dinâmica permite que o jogo funcione com diferentes tamanhos de tabuleiro, dependendo da dificuldade escolhida.
-
+#
+<p><strong>Considerações Finais</strong></p>
+<p>Esta versão do Campo Minado oferece uma experiência mais robusta e flexível, permitindo que o jogador salve o progresso de sua partida e reveja a qualquer momento. A alocação dinâmica de memória garante que o jogo seja escalável para diferentes tamanhos de tabuleiro, tornando o código mais modular e fácil de manter.</p>
