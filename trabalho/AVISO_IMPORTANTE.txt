@@ -1,0 +1,46 @@
+Instruções para Rodar o Jogo
+
+Este programa é um jogo de Campo Minado implementado em C. Para rodar o jogo, você precisará compilar os arquivos C utilizando um compilador adequado.
+Abaixo, seguem as instruções de como rodar o programa e como usar as tags ASCII para colorir a saída no terminal.
+
+Arquivos do Jogo:
+campo_minado_ruansathler.c: Arquivo principal que contém a lógica do jogo.
+campoMinado.c: Contém funções auxiliares relacionadas à configuração e manipulação do campo minado.
+registro.c: Responsável pela leitura e gravação dos registros de pontuação.
+
+Passos para Compilar e Rodar:
+Compilação:
+Abra o terminal na pasta onde os arquivos estão localizados.
+Compile o programa usando um compilador C como o gcc:
+
+gcc campo_minado_ruansathler.c campoMinado.c registro.c -o campo_minado
+
+Este comando gerará o executável chamado campo_minado.
+Execução:
+
+Após a compilação, execute o programa com o seguinte comando:
+
+./campo_minado
+
+Usando Tags ASCII para Cores no Terminal:
+Este jogo usa códigos de escape ANSI (ASCII) para imprimir com cores no terminal. Para usar essas cores, você pode adicionar os seguintes 
+códigos antes do texto que deseja colorir e o código \033[0m após o texto para resetar a cor.
+
+
+Erro Relacionado a Cores no Terminal:
+Se você encontrar problemas ao tentar usar as cores ASCII no terminal, pode ser que o seu terminal não suporte códigos de escape ANSI.
+Certifique-se de estar utilizando um terminal que seja compatível com essas sequências, como o terminal do Linux ou o terminal do macOS. 
+No Windows, pode ser necessário configurar o terminal para suportar essas sequências ou usar um terminal como o Windows Terminal.
+
+Códigos de Cores ANSI:
+
+Preto: \033[30m
+Vermelho: \033[31m
+Verde: \033[32m
+Amarelo: \033[33m
+Azul: \033[34m
+Magenta: \033[35m
+Ciano: \033[36m
+Branco: \033[37m
+Negrito: \033[1m
+Resetar cor: \033[0m
