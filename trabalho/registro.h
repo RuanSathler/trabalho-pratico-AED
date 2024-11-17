@@ -2,7 +2,6 @@
 #define REGISTRO_H
 
 typedef struct celulaCampoMinado celula;
-
 // CriaArquivo: Função responsável por criar um arquivo para salvar o histórico do jogo.
 // O nome do arquivo é gerado com base na data e hora atual, no formato "historico/dd-mm-yy HH-MM".
 // Retorna um ponteiro para o arquivo criado. Caso não consiga criar, exibe uma mensagem de erro.

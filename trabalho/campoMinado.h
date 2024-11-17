@@ -9,6 +9,7 @@ typedef struct celulaCampoMinado{
     int estaAberto;
 }celula;
 
+
 //ler as coordenadas e garante que sejam entradas validas, são consideradas entradas validas dois numeros na mesmda linhas,
 //sejam separados por ponto, virgula ou espaço além disso ela verica se a entrada é EOF
 int LerCoordenadas(int *linha, int *coluna);

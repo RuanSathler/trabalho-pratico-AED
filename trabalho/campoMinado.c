@@ -3,6 +3,7 @@
 #include <time.h>
 #include "campoMinado.h"
 
+
 int LerCoordenadas(int *linha, int *coluna) {
     int valor;
     while (valor=scanf("%d%*[ ,.]%d", linha, coluna), valor!= 2 && valor != -1){
